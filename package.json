@@ -1,7 +1,7 @@
 {
   "name": "medius",
   "productName": "Medius",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Brinque e altere os dados com Medius",
   "main": ".webpack/main",
   "repository": {
