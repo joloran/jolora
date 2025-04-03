@@ -1,17 +1,13 @@
 import path from 'node:path'
 
-import { BrowserWindow, Menu, nativeTheme, Tray } from 'electron'
+import { BrowserWindow, Menu, Tray } from 'electron'
 
 import { trayEvents } from './events'
 
 export function createTray(window: BrowserWindow) {
-  const isDarkMode = nativeTheme.shouldUseDarkColors
-
   const isMacOS = process.platform === 'darwin'
 
-  const iconPath = isDarkMode
-    ? path.resolve(__dirname, 'icons', 'trayWindowsWhite.ico')
-    : path.resolve(__dirname, 'icons', 'trayWindowsDark.ico')
+  const iconPath = path.resolve(__dirname, 'icons', 'trayWindows.ico')
 
   const icon = isMacOS
     ? path.resolve(__dirname, 'icons', 'mediusTemplate@2x.png')
