@@ -6,7 +6,7 @@
   "main": ".webpack/main",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angelopedroso/Notepad-Electron.git"
+    "url": "https://github.com/joloran/jolora.git"
   },
   "scripts": {
     "start": "dotenv -e .env -- electron-forge start",
