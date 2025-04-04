@@ -32,28 +32,24 @@ export function AlertUpdater() {
     window.api.update.installNewVersion()
   }
   return (
-    <>
-      {updateNotes && (
-        <AlertDialog open={isDialogOpened} onOpenChange={setIsDialogOpened}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>
-                Uma nova versão está disponível! 🤩
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                A versão {updateNotes?.version} já está disponível! Atualize
-                agora ou na próxima vez que abrir o Medius.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Outra hora</AlertDialogCancel>
-              <AlertDialogAction onClick={handleActionInstallUpdate}>
-                Atualizar
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )}
-    </>
+    <AlertDialog open={isDialogOpened} onOpenChange={setIsDialogOpened}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            Uma nova versão está disponível! 🤩
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            A versão {updateNotes?.version} já está disponível! Atualize agora
+            ou na próxima vez que abrir o Medius.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Outra hora</AlertDialogCancel>
+          <AlertDialogAction onClick={handleActionInstallUpdate}>
+            Atualizar
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   )
 }
