@@ -2,6 +2,7 @@ import { User } from '~/src/shared/types/ipc/user'
 
 import { CNPJFormatter } from '../../utils/cnpj-formatter'
 import { Button } from '../ui/button'
+import { DelayedTooltipItem } from '../ui/delayed-tooltip'
 import {
   Form,
   FormControl,
@@ -18,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select'
+import { TooltipProvider } from '../ui/tooltip'
 import { useUserForm } from './hooks/useForm'
 
 export interface UserFormProps {
@@ -103,9 +105,20 @@ export function UserForm({ data }: UserFormProps) {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="0">Administrador</SelectItem>
-                      <SelectItem value="1">Caixa</SelectItem>
-                      <SelectItem value="2">Com mesa</SelectItem>
+                      <TooltipProvider>
+                        <DelayedTooltipItem
+                          tooltip="Define o terminal do usuário como Administrador
+                              (acesso a todas as opções do app)"
+                        >
+                          <SelectItem value="0">Administrador</SelectItem>
+                        </DelayedTooltipItem>
+                        <DelayedTooltipItem tooltip="Define o terminal do usuário como Caixa (acesso às opções padrão, utilizado pela maioria dos usuários)">
+                          <SelectItem value="1">Caixa</SelectItem>
+                        </DelayedTooltipItem>
+                        <DelayedTooltipItem tooltip="Define o terminal do usuário como Mesa (para restaurante) (acesso ao menu de Mesa e funcionalidades do Caixa)">
+                          <SelectItem value="2">Mesa(restaurante)</SelectItem>
+                        </DelayedTooltipItem>
+                      </TooltipProvider>
                     </SelectContent>
                   </Select>
                   <FormMessage className="text-xs" />
@@ -122,7 +135,7 @@ export function UserForm({ data }: UserFormProps) {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Nome do banco de dados(opcional)"
+                      placeholder="Nome do banco de dados (opcional)"
                       className="focus-visible:ring-0 focus-visible:ring-offset-0 border-0 border-b rounded-none focus-visible:border-medius-400 placeholder:text-xs"
                       {...field}
                     />
