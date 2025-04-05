@@ -1,5 +1,9 @@
 appId: com.medius.app
 productName: Medius
+
+extraMetadata:
+  description: Medius
+
 publish:
   - provider: github
     releaseType: release
@@ -34,3 +38,10 @@ files:
   - "!out/**"
 
 asar: true
+
+asarUnpack:
+  - resources/*
+
+extraResources:
+  - from: resources
+    to: resources

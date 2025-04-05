@@ -3,6 +3,8 @@ import { UserCircle2 } from 'lucide-react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { RecentUsers } from '~/src/shared/types/ipc/recent-users'
+
 import { capitalizeSmart } from '../../utils/capitalize'
 import {
   CommandDialog,
@@ -39,8 +41,10 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
     return () => document.removeEventListener('keydown', down)
   }, [open, onOpenChange])
 
-  function handleOpenUser(id: number) {
-    navigate(`/user/${id}`)
+  function handleOpenUser(data: RecentUsers) {
+    window.api.jumpList.addRecentUser(data)
+
+    navigate(`/user/${data.id}`)
     onOpenChange(false)
   }
 
@@ -62,7 +66,9 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
           return (
             <CommandItem
               key={user.id}
-              onSelect={() => handleOpenUser(user.id)}
+              onSelect={() =>
+                handleOpenUser({ id: user.id, name: user.nome_empresa })
+              }
               className="py-3 px-4 text-primary text-sm flex items-center gap-2 hover:bg-medius-700 aria-selected:!bg-border"
             >
               <UserCircle2 className="h-4 w-4 shrink-0 opacity-50" />

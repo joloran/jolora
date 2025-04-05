@@ -14,4 +14,8 @@ export const IPC = {
     CLEAR: 'wordle-guess: clear',
     FETCH: 'wordle-guess: save',
   },
+  JUMP_LIST: {
+    ADD_USER: 'jump_list: add-recent-user',
+    NAVIGATE_TO: 'jump_list: navigate-to-user',
+  },
 }

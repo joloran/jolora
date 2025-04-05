@@ -1,6 +1,7 @@
 import { contextBridge } from 'electron'
 
 import { guesses } from './api/guesses'
+import { jumpList } from './api/jump-list'
 import { titleBar } from './api/title-bar'
 import { updater } from './api/update'
 import { user } from './api/user'
@@ -12,7 +13,7 @@ declare global {
 }
 
 // Custom APIs for renderer
-const api = { user, update: updater, titleBar, guesses }
+const api = { user, update: updater, titleBar, guesses, jumpList }
 
 if (process.contextIsolated) {
   try {

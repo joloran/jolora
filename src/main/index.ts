@@ -7,6 +7,7 @@ import { autoUpdater } from 'electron-updater'
 import trayIcon from '~/resources/icon.png'
 
 import { createWindowEvents } from './events'
+import { handleOpenUser } from './jump-list'
 import { createShortcuts } from './shortcuts'
 import { titleBarFunctions } from './title-bar'
 import { createTray } from './tray'
@@ -56,11 +57,15 @@ const gotTheLock = app.requestSingleInstanceLock()
 if (!gotTheLock) {
   app.quit()
 } else {
-  app.on('second-instance', () => {
+  app.on('second-instance', (_, argv) => {
     const mainWindow = BrowserWindow.getAllWindows()[0]
     if (mainWindow) {
-      if (mainWindow.isMinimized()) mainWindow.restore()
+      if (mainWindow.isMinimized()) {
+        mainWindow.restore()
+      }
+
       mainWindow.focus()
+      handleOpenUser(mainWindow, argv)
     }
   })
 
