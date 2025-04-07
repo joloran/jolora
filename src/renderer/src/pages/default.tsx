@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-import { AlertUpdater } from '../components/ui/alert-updater'
 import { Grid } from '../components/Wordle/Grid/Grid'
 import { Keyboard } from '../components/Wordle/Keyboard/Keyboard'
+import { Streak } from '../components/Wordle/streak'
 import {
   isWinningWord,
   isWordInWordList,
@@ -14,9 +14,7 @@ export function Default() {
   const [guesses, setGuesses] = useState<string[]>([])
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [removeKeyBoard, setRemoveKeyBoard] = useState(false)
-  const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
-  const [isGameLost, setIsGameLost] = useState(false)
+  const [streak, setStreak] = useState<number | null>(null)
 
   function onChar(value: string) {
     if (currentGuess.length < 5 && guesses.length < 6) {
@@ -32,10 +30,9 @@ export function Default() {
     if (currentGuess === '') return
 
     if (!isWordInWordList(currentGuess)) {
-      setIsWordNotFoundAlertOpen(true)
-      return setTimeout(() => {
-        setIsWordNotFoundAlertOpen(false)
-      }, 2000)
+      return toast.info('Palavra não encontrada', {
+        description: 'A palavra digitada não foi encontrada ou não existe',
+      })
     }
 
     const winningWord = isWinningWord(currentGuess)
@@ -47,41 +44,33 @@ export function Default() {
       setCurrentGuess('')
 
       if (winningWord) {
+        const streakCount = await window.api.streak.incrementStreak()
+        setStreak((prev) => prev ?? 0 + streakCount)
+
+        toast.success('Você acertou a palavra do dia 🤯🎆')
+
         return setIsGameWon(true)
       }
 
       if (guesses.length === 5) {
-        setIsGameLost(true)
-        return setTimeout(() => {
-          setIsGameLost(false)
-        }, 2000)
+        await window.api.streak.clearStreak()
+        setStreak(null)
+
+        return toast.error('Você perdeu 😬', {
+          description: `A palavra correta era ${solution}`,
+        })
       }
     }
   }
 
   useEffect(() => {
-    if (isWordNotFoundAlertOpen) {
-      toast.info('Palavra não encontrada', {
-        description: 'A palavra digitada não foi encontrada ou não existe',
-      })
-    }
-
-    if (isGameLost) {
-      toast.error('Você perdeu 😬', {
-        description: `A palavra correta era ${solution}`,
-      })
-    }
-
-    if (isGameWon) {
-      toast.success('Você acertou a palavra do dia 🤯🎆')
-      setRemoveKeyBoard(true)
-    }
-  }, [isWordNotFoundAlertOpen, isGameLost, isGameWon])
-
-  useEffect(() => {
-    async function getGuesses() {
+    async function getGuessesAndStreak() {
       await window.api.guesses.clearGuess()
       const guesses = await window.api.guesses.fetchGuesses()
+
+      const streakCount = await window.api.streak.fetchStreak()
+
+      setStreak(streakCount)
 
       if (guesses.data) {
         const lastWord = guesses.data.at(-1) ?? ''
@@ -89,12 +78,12 @@ export function Default() {
         setGuesses(guesses.data)
 
         if (isWinningWord(lastWord)) {
-          setRemoveKeyBoard(true)
+          setIsGameWon(true)
         }
       }
     }
 
-    getGuesses()
+    getGuessesAndStreak()
   }, [])
 
   return (
@@ -102,7 +91,7 @@ export function Default() {
       <main className="px-6 py-4 flex items-center justify-center flex-col flex-1 lg:px-8">
         <Grid guesses={guesses} currentGuess={currentGuess} />
 
-        {!removeKeyBoard && (
+        {!isGameWon && (
           <Keyboard
             onChar={onChar}
             onDelete={onDelete}
@@ -110,8 +99,8 @@ export function Default() {
             guesses={guesses}
           />
         )}
+        {streak && <Streak streak={streak} />}
       </main>
-      <AlertUpdater />
     </>
   )
 }

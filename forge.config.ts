@@ -47,7 +47,7 @@ const config: ForgeConfig = {
     new WebpackPlugin({
       mainConfig,
       devContentSecurityPolicy:
-        'connect-src ws://127.0.0.1:* http://127.0.0.1:* http://localhost:* ws://localhost:* https://terminal.midiatecnologia.com',
+        'connect-src ws://127.0.0.1:* http://127.0.0.1:* http://localhost:* ws://localhost:* https://terminal.midiatecnologia.com https://unpkg.com/@lottiefiles/dotlottie-web@0.42.0/dist/dotlottie-player.wasm https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.42.0/dist/dotlottie-player.wasm https://lottie.host/40138f39-c30c-4415-8e3d-eeb26c56cc7a/ehtPhrbmwY.lottie',
       renderer: {
         config: rendererConfig,
         entryPoints: [

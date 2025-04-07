@@ -37,4 +37,13 @@ export const rules: Required<ModuleOptions>['rules'] = [
       },
     },
   },
+  {
+    test: /\.lottie$/,
+    use: {
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+      },
+    },
+  },
 ]

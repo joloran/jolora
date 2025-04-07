@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Routes } from '../routes'
 import { TitleBar } from './components/TitleBar'
+import { AlertUpdater } from './components/ui/alert-updater'
 import { Toaster } from './components/ui/sonner'
 import { queryClient } from './lib/react-query'
 
@@ -30,6 +31,7 @@ export function App() {
         <TitleBar />
         <Routes />
       </div>
+      <AlertUpdater />
       <Toaster position="top-right" />
     </QueryClientProvider>
   )

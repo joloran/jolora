@@ -28,7 +28,7 @@ const createWindow = (): void => {
     height: 670,
     minWidth: 700,
     minHeight: 600,
-    backgroundColor: '#17141f',
+    backgroundColor: '#151f2b',
     titleBarStyle: 'hidden',
     titleBarOverlay: false,
     ...(process.platform !== 'darwin' ? { icon: trayIcon } : {}),

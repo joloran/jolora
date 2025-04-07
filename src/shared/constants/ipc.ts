@@ -18,4 +18,9 @@ export const IPC = {
     ADD_USER: 'jump_list: add-recent-user',
     NAVIGATE_TO: 'jump_list: navigate-to-user',
   },
+  STREAK: {
+    INCREMENT: 'streak-wordle: increment streak',
+    FETCH: 'streak-wordle: fetch streak',
+    CLEAR: 'streak-wordle: clear streak',
+  },
 }

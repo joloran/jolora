@@ -565,6 +565,11 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.9.tgz#50dea3616bc8191fb8e112283b49eaff03e78429"
   integrity sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==
 
+"@fontsource/fredoka@^5.2.6":
+  version "5.2.6"
+  resolved "https://registry.yarnpkg.com/@fontsource/fredoka/-/fredoka-5.2.6.tgz#88aa150c99caf4515a1a40b2bf946bbd7c86cf52"
+  integrity sha512-/BZvS5oadjsrqNfSglTtnwvlOu9CBO/F+cykFYVR6ls/5KDLWP0/emORfGbmrNKt+3OuCU3Hu8NSZkp+T8WTeg==
+
 "@fontsource/inter@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.1.1.tgz#401803b6ac4c877f5be94088aa89147ed5a2bd85"
@@ -665,6 +670,18 @@
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz#4fc56c15c580b9adb7dc3c333a134e540b44bfb1"
   integrity sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==
+
+"@lottiefiles/dotlottie-react@^0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.13.3.tgz#d10b743a33f8c024528b018dde627dbd81eedffb"
+  integrity sha512-V4FfdYlqzjBUX7f0KV6vfQOOI0Cp+3XeG/ZqSDFSEVg5P7fpROpDv5/I9aTM8sOCESK1SWT96Fem+QVUnBV1wQ==
+  dependencies:
+    "@lottiefiles/dotlottie-web" "0.42.0"
+
+"@lottiefiles/dotlottie-web@0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.42.0.tgz#b46f8ff85363192d139ac79796c199914f4d5812"
+  integrity sha512-Zr2LCaOAoPCsdAQgeLyCSiQ1+xrAJtRCyuEYDj0qR5heUwpc+Pxbb88JyTVumcXFfKOBMOMmrlsTScLz2mrvQQ==
 
 "@malept/cross-spawn-promise@^1.0.0":
   version "1.1.1"
