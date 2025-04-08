@@ -45,7 +45,7 @@ export function Default() {
 
       if (winningWord) {
         const streakCount = await window.api.streak.incrementStreak()
-        setStreak((prev) => prev ?? 0 + streakCount)
+        setStreak(streakCount)
 
         toast.success('Você acertou a palavra do dia 🤯🎆')
 
