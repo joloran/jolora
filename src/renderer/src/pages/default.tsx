@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { Grid } from '../components/Wordle/Grid/Grid'
 import { Keyboard } from '../components/Wordle/Keyboard/Keyboard'
-import { Streak } from '../components/Wordle/streak'
+// import { Streak } from '../components/Wordle/streak'
 import {
   isWinningWord,
   isWordInWordList,
@@ -99,7 +99,7 @@ export function Default() {
             guesses={guesses}
           />
         )}
-        {streak && <Streak streak={streak} />}
+        {/* {streak && <Streak streak={streak} />} */}
       </main>
     </>
   )
