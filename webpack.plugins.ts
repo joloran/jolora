@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import type IForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import webpack from 'webpack'
 

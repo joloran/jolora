@@ -1,4 +1,4 @@
 declare module '*.png'
-declare module '*.lottie'
+declare module '*.gif'
 declare module '*.ico'
 declare module '*.png?asset'
