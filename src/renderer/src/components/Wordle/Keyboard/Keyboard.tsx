@@ -1,3 +1,5 @@
+import { useCallback, useEffect } from 'react'
+
 import { KeyValue } from '../../../utils/wordle/keyboard'
 import { getStatuses } from '../../../utils/wordle/statuses'
 import { Key } from './Key'
@@ -12,15 +14,34 @@ type Props = {
 export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
   const charStatuses = getStatuses(guesses)
 
-  const onClick = (value: KeyValue) => {
-    if (value === 'ENTER') {
-      return onEnter()
+  const onClick = useCallback(
+    (value: KeyValue) => {
+      if (value === 'ENTER') {
+        return onEnter()
+      }
+      if (value === 'DELETE') {
+        return onDelete()
+      }
+      return onChar(value)
+    },
+    [onChar, onDelete, onEnter],
+  )
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      const key = e.key.toUpperCase()
+
+      if (key === 'ENTER') return onEnter()
+      if (key === 'BACKSPACE') return onDelete()
+
+      if (/^[A-Z]$/.test(key)) {
+        return onChar(key)
+      }
     }
-    if (value === 'DELETE') {
-      return onDelete()
-    }
-    return onChar(value)
-  }
+
+    window.addEventListener('keydown', listener)
+    return () => window.removeEventListener('keydown', listener)
+  }, [onChar, onDelete, onEnter])
 
   return (
     <div>
@@ -49,7 +70,7 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
       </div>
       <div className="flex justify-center">
         <Key width={65.4} value="ENTER" onClick={onClick}>
-          Enter
+          Enviar
         </Key>
         <Key value="Z" onClick={onClick} status={charStatuses.Z} />
         <Key value="X" onClick={onClick} status={charStatuses.X} />
@@ -59,7 +80,7 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="N" onClick={onClick} status={charStatuses.N} />
         <Key value="M" onClick={onClick} status={charStatuses.M} />
         <Key width={65.4} value="DELETE" onClick={onClick}>
-          Delete
+          Deletar
         </Key>
       </div>
     </div>
