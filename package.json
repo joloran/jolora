@@ -1,7 +1,7 @@
 {
   "name": "medius",
   "productName": "Medius",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Medius",
   "main": ".webpack/main",
   "repository": {

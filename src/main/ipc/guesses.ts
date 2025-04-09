@@ -26,11 +26,17 @@ ipcMain.handle(IPC.GUESSES_WORDLE.FETCH, (): FetchGuessesResponse => {
 })
 
 ipcMain.handle(IPC.GUESSES_WORDLE.CLEAR, () => {
-  const lastClear = store.get('lastClear', '')
-  const today = new Date().toISOString().split('T')[0]
+  const now = new Date()
+  const date = now.toISOString().split('T')[0]
+  const hour = now.getHours()
 
-  if (!lastClear || lastClear !== today) {
+  const shift = hour < 12 ? 'm' : 't'
+  const currentPeriod = `${date}-${shift}`
+
+  const lastClear = store.get('lastClear', '')
+
+  if (lastClear !== currentPeriod) {
     store.set('guesses', [])
-    store.set('lastClear', today)
+    store.set('lastClear', currentPeriod)
   }
 })
