@@ -15,6 +15,9 @@ export function Default() {
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [streak, setStreak] = useState<number | null>(null)
+  const [lastReset, setLastReset] = useState<'beforeNoon' | 'afterNoon' | null>(
+    null,
+  )
 
   function onChar(value: string) {
     if (currentGuess.length < 5 && guesses.length < 6) {
@@ -85,6 +88,38 @@ export function Default() {
 
     getGuessesAndStreak()
   }, [])
+
+  useEffect(() => {
+    async function checkAndReset() {
+      const now = new Date()
+      const hours = now.getHours()
+
+      const isBeforeNoon = (await window.api.guesses.fetchLastClear()).endsWith(
+        'm',
+      )
+
+      if (hours < 12 && lastReset !== 'beforeNoon' && !isBeforeNoon) {
+        await window.api.guesses.clearGuess()
+
+        setLastReset('beforeNoon')
+      } else if (hours >= 12 && lastReset !== 'afterNoon' && isBeforeNoon) {
+        await window.api.guesses.clearGuess()
+
+        setLastReset('afterNoon')
+      }
+    }
+
+    checkAndReset()
+
+    const intervalId = setInterval(
+      () => {
+        checkAndReset()
+      },
+      10 * 60 * 1000,
+    )
+
+    return () => clearInterval(intervalId)
+  }, [lastReset])
 
   return (
     <>

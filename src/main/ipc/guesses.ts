@@ -40,3 +40,9 @@ ipcMain.handle(IPC.GUESSES_WORDLE.CLEAR, () => {
     store.set('lastClear', currentPeriod)
   }
 })
+
+ipcMain.handle(IPC.GUESSES_WORDLE.LAST_CLEAR, () => {
+  const lastClear = store.get('lastClear', '')
+
+  return lastClear
+})

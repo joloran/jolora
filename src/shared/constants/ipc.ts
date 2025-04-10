@@ -13,6 +13,7 @@ export const IPC = {
     CREATE: 'wordle-guess: add',
     CLEAR: 'wordle-guess: clear',
     FETCH: 'wordle-guess: save',
+    LAST_CLEAR: 'wordle-guess: get last clear',
   },
   JUMP_LIST: {
     ADD_USER: 'jump_list: add-recent-user',

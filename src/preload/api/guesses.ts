@@ -16,4 +16,7 @@ export const guesses = {
   clearGuess(): Promise<void> {
     return ipcRenderer.invoke(IPC.GUESSES_WORDLE.CLEAR)
   },
+  fetchLastClear(): Promise<string> {
+    return ipcRenderer.invoke(IPC.GUESSES_WORDLE.LAST_CLEAR)
+  },
 }

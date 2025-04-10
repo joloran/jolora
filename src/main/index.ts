@@ -64,7 +64,9 @@ if (!gotTheLock) {
         mainWindow.restore()
       }
 
+      mainWindow.show()
       mainWindow.focus()
+
       handleOpenUser(mainWindow, argv)
     }
   })

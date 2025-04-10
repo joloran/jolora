@@ -29,6 +29,7 @@ export function ActionButtons() {
               size="action"
               onClick={handleCloseButton}
               className="bg-red-500 rounded-full hover:bg-red-700"
+              tabIndex={-1}
             />
           </TooltipTrigger>
           <TooltipContent className="text-xs">Fechar</TooltipContent>
@@ -40,6 +41,7 @@ export function ActionButtons() {
               size="action"
               onClick={handleMinimizeButton}
               className="bg-yellow-500 rounded-full hover:bg-yellow-700"
+              tabIndex={-1}
             />
           </TooltipTrigger>
           <TooltipContent className="text-xs">Minimizar</TooltipContent>
@@ -51,6 +53,7 @@ export function ActionButtons() {
               size="action"
               onClick={handleMaximizeButton}
               className="bg-green-500 rounded-full hover:bg-green-700"
+              tabIndex={-1}
             />
           </TooltipTrigger>
           <TooltipContent className="text-xs">Maximizar</TooltipContent>
