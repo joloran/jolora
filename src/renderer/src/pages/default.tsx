@@ -38,6 +38,12 @@ export function Default() {
       })
     }
 
+    if (guesses.includes(currentGuess)) {
+      return toast.info('Palavra já foi digitada', {
+        description: 'A palavra já foi digitada anteriormente, tente outra',
+      })
+    }
+
     const winningWord = isWinningWord(currentGuess)
 
     if (currentGuess.length === 5 && guesses.length < 6 && !isGameWon) {
