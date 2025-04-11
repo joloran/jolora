@@ -6,6 +6,10 @@ export interface CreateGuessesRequest {
   word: string
 }
 
+export interface CreateSolutionRequest {
+  solution: string
+}
+
 /**
  * Response
  */

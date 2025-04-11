@@ -7,6 +7,7 @@ interface StoreType {
   lastClear?: string
   recentUsers: RecentUsers[]
   streak: number | null
+  solution: string
 }
 
 export const store = new Store<StoreType>({
@@ -14,5 +15,6 @@ export const store = new Store<StoreType>({
     guesses: [],
     recentUsers: [],
     streak: null,
+    solution: '',
   },
 })

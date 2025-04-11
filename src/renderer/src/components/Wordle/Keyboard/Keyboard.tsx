@@ -8,11 +8,18 @@ type Props = {
   onChar: (value: string) => void
   onDelete: () => void
   onEnter: () => void
+  solution: string
   guesses: string[]
 }
 
-export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
-  const charStatuses = getStatuses(guesses)
+export const Keyboard = ({
+  onChar,
+  onDelete,
+  onEnter,
+  solution,
+  guesses,
+}: Props) => {
+  const charStatuses = getStatuses(guesses, solution)
 
   const onClick = useCallback(
     (value: KeyValue) => {
