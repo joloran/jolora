@@ -73,13 +73,17 @@ export function Default() {
   useEffect(() => {
     async function getGuessesAndStreak() {
       await window.api.guesses.clearGuess()
-      const word = await window.api.guesses.fetchSolution()
+      let word = await window.api.guesses.fetchSolution()
 
       const guesses = await window.api.guesses.fetchGuesses()
 
       const streakCount = await window.api.streak.fetchStreak()
 
       setStreak(streakCount)
+
+      if (!word) {
+        word = getWordOfDay()
+      }
       setSolution(word)
 
       if (guesses.data) {
